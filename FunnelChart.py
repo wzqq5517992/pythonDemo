@@ -1,4 +1,4 @@
-from pyecharts import Bar, Line
+from pyecharts import Funnel
 from BillDetail import read_csv, get_payment_list, get_income_list, get_payment_list_detail, payment_month_list, \
     income_month_list
 from pyecharts.engine import create_default_environment
@@ -11,11 +11,17 @@ print("账单收入: %s" % str(total_income))
 
 payment_dict = payment_month_list()
 income_dict = income_month_list()
+income_dict["总收入"] = income_dict["四月"] + income_dict["六月"] + income_dict["五月"]
 
-bar = Bar("2019第二季度个人账单柱状图")
-bar.add("支出", list(payment_dict.keys()), list(payment_dict.values()), is_stack=True)
-bar.add("收入", list(income_dict.keys()), list(income_dict.values()), is_stack=True)
-bar.render("./bar.html")
-# env = create_default_environment("html")
-# env.render_chart_to_file(bar, path="./bar.html")
-print("执行结束")
+from pyecharts import Funnel
+
+funnel = Funnel("2019第二季度个人账单收入漏斗图")
+funnel.add(
+    "账单",
+    list(income_dict.keys()),
+    list(income_dict.values()),
+    is_label_show=True,
+    label_pos="inside",
+    label_text_color="#fff",
+)
+funnel.render("./funnel.html")
