@@ -1,4 +1,4 @@
-from pyecharts import Bar, Line
+from pyecharts import Gauge
 from BillDetail import read_csv, get_payment_list, get_income_list, get_payment_list_detail, payment_month_list, \
     income_month_list
 from pyecharts.engine import create_default_environment
@@ -11,11 +11,11 @@ print("账单收入: %s" % str(total_income))
 
 payment_dict = payment_month_list()
 income_dict = income_month_list()
+income_dict["总收入"] = income_dict["四月"] + income_dict["六月"] + income_dict["五月"]
 
-bar = Bar("2019第二季度个人账单柱状图")
-bar.add("支出", list(payment_dict.keys()), list(payment_dict.values()), is_stack=True)
-bar.add("收入", list(income_dict.keys()), list(income_dict.values()), is_stack=True)
-bar.render("./bar.html")
-# env = create_default_environment("html")
-# env.render_chart_to_file(bar, path="./bar.html")
-print("执行结束")
+percentage = round(total_income / total_payment * 100, 2)
+print(percentage)
+
+gauge = Gauge("2019第二季度收入/支出仪表盘示例图")
+gauge.add("个人盈亏指标", "盈亏率", percentage)
+gauge.render("./gauge.html")

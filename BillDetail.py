@@ -12,6 +12,12 @@ income_list = []
 payment_num = 0
 # 收入多少笔数据
 income_num = 0
+# 四月份支出明细列表
+april_payment_list = []
+# 五月份支出明细列表
+may_payment_list = []
+# 六月份支出明细列表
+june_payment_list = []
 
 
 # 读取csv文件
@@ -42,9 +48,69 @@ def bill_save_data(line):
     # 列表是能直接追加数据的  但是数字不能直接追加数据
 
 
+
+
+
+# 按月统计支出情况
+def payment_month_list():
+    payment_dict = {}
+    for month_line in payment_list:
+        time = int(month_line[0][6:7])
+        print(time)
+        if time == 4:
+            april_payment_list.append(month_line)
+        elif time == 5:
+            may_payment_list.append(month_line)
+        else:
+            june_payment_list.append(month_line)
+    total_april = 0
+    for april in april_payment_list:
+        total_april += float(april[5][1:])
+    total_may = 0
+    for may in may_payment_list:
+        total_may += float(may[5][1:])
+    total_june = 0
+    for june in june_payment_list:
+        total_june += float(june[5][1:])
+
+        payment_dict["四月"] = float(total_april)
+        payment_dict["五月"] = float(total_may)
+        payment_dict["六月"] = float(total_june)
+
+    return payment_dict
+
+
+def income_month_list():
+    income_dict = {}
+    for month_line in income_list:
+        time = int(month_line[0][6:7])
+        print(time)
+        if time == 4:
+            april_payment_list.append(month_line)
+        elif time == 5:
+            may_payment_list.append(month_line)
+        else:
+            june_payment_list.append(month_line)
+    total_april = 0
+    for april in april_payment_list:
+        total_april += float(april[5][1:])
+    total_may = 0
+    for may in may_payment_list:
+        total_may += float(may[5][1:])
+    total_june = 0
+    for june in june_payment_list:
+        total_june += float(june[5][1:])
+
+        income_dict["四月"] = float(total_april)
+        income_dict["五月"] = float(total_may)
+        income_dict["六月"] = float(total_june)
+
+    return income_dict
+
+
+
+
 # 收入支出的求和
-
-
 # 支出求和
 def get_payment_list():
     # 思路
