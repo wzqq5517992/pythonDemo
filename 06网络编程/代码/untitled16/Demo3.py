@@ -20,6 +20,8 @@
 # 以上内容是被反扒了，对方网站规则改了
 
 # 经过分析
+from this import s
+
 import requests
 
 headers = {
@@ -35,6 +37,7 @@ for x in range(0, 1000, 20):
     # 为什么可以删除cookie其中报错那段内容，我猜的
     # 爬虫很多是需要自己猜  比如字段名称  cookie的内容
     data = rs.json()['data']
+    print("====== {} ".format(data))
     if data == None:
         break
     for i in data[0]["image_list"]:
