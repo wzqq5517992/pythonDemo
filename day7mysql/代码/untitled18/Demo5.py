@@ -13,10 +13,11 @@ cnx = mysql.connect(user='root', password='Wzq5517992@', host='47.93.37.94', dat
 cursor = cnx.cursor()
 
 # 查询操作需要返回数据集
-sqlstr = "select * from student where age>=16"
+sqlstr = "select * from student where age=16"
 cursor.execute(sqlstr)
 # 这里多一步  不在是提交，查询内容
 result = cursor.fetchall()
+print(result)
 # 可以遍历这个结果集
 for row in result:
     print(row[0], end=' \t')

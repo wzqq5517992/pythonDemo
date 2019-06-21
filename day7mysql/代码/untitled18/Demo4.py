@@ -22,6 +22,6 @@ sqlstr_student = "insert into student(name,age,grade_id) values('蔡依林',19,1
 
 sqlstr_grade = "insert into grade(grade_name) values('一年级一班'),('二年级二班')"
 
-cursor.execute(sqlstr_grade)
+cursor.execute(sqlstr_student)
 # 必须通过commit进行提交到数据库进行执行
 cnx.commit()

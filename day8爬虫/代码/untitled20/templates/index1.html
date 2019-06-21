@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for m in movies %}
+    <a href="http://jx.du2.cc/?url={{m['playurl']}}">{{m['name']}}</a><br>
+{% endfor %}
+</body>
+</html>

@@ -1,5 +1,5 @@
 from pyecharts import Pie
-import pyecharts_snapshot
+# import pyecharts_snapshot
 
 from pyecharts.engine import create_default_environment
 
